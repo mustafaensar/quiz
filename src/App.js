@@ -3,35 +3,23 @@ import Quiz from './components/Quiz';
 import React from 'react';
 import data from './data';
 import Home from './components/Home';
+import { nanoid } from 'nanoid';
 
 function App() {
 
   const [showComponent, setShowComponent] = React.useState(true);
   const [answers, setAnswers] = React.useState([]);
 
- 
   function handleButtonClick() {
     setShowComponent(!showComponent);
   };
 
-  {/*function newData(){
-    const newData = data;
-    const shuffledOptions = newData.map((elem) => elem.options.sort((a, b) => 0.5 - Math.random()));
-    for(let i=0; i<newData.length; i++){
-      newData[i].options = shuffledOptions[i];
-    };
-    return newData;
-  }*/}
-
-  function handleOptionsButton(id, answer, status){
-    
-    if(status !== "selected"){
-      status = "selected"
-    }
+  function handleOptionsButton(id, answer, buttonId){
 
     const index = answers.findIndex((elem) => elem.id === id)
 
     const myAnswer = {
+      button: buttonId,
       id: id,
       myAnswer: answer,
       isSelected: true
@@ -45,16 +33,26 @@ function App() {
       setAnswers(newAnswers);
     }
 
-    console.log(answer)
   }
 
   console.log(answers)
+
+  function checkAnswers(){
+    
+  }
+
 
   return (
     <>
       <div className='App'>
         {showComponent && <Home handleButtonClick={handleButtonClick}/>}
-        {!showComponent && <Quiz questionData={data} options={answers} handleOptionsButton = {handleOptionsButton}/>}
+        {!showComponent && <Quiz
+          questionData={data}
+          answersData={answers}
+          setId={nanoid}
+          handleOptionsButton={handleOptionsButton}
+          checkAnswers={checkAnswers}
+          />}
       </div>
     </>
   );

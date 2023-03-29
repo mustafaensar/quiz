@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-anonymous-default-export
-export default[
+
+const data = [
   {
     category: "General Knowledge",
     id: "622a1c367cc59eab6f9503a2",
@@ -301,3 +302,12 @@ export default[
     isNiche: false
   }
 ]
+
+
+const shuffledOptions = data.map((elem) => elem.options.sort((a, b) => 0.5 - Math.random()));
+for(let i=0; i<data.length; i++){
+  data[i].options = shuffledOptions[i];
+};
+const shuffledData = data.sort((a, b) => 0.5 - Math.random());
+
+export default shuffledData;

@@ -31,6 +31,7 @@
   font-size: larger;
   color: #4D5B9E;
   cursor: default;
+  margin-right: 20px;
 }
 
 .quiz--options {
@@ -54,6 +55,10 @@
   background-color: white;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+.quiz--button:hover {
+  background-color: #D6DBF5;
 }
 
 .category {
