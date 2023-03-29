@@ -11,6 +11,7 @@ export default function Question(props) {
                 <h2 className='quiz--question'>{quiz.question}</h2>
                 <ol className='quiz--options'>
                   <Options
+                  disabled={props.disabled}
                   answers={props.answers} 
                   options={quiz.options} 
                   quizId={quiz.id} 

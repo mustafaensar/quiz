@@ -8,6 +8,7 @@ export default function Quiz(props) {
     <div className='quiz'>
       <ol className='quiz--list'>
         <Question 
+        disabled={props.disabled}
         questions={props.questionData} 
         answers={props.answersData}
         setId={props.setId}

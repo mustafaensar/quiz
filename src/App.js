@@ -9,6 +9,12 @@ function App() {
 
   const [showComponent, setShowComponent] = React.useState(true);
   const [answers, setAnswers] = React.useState([]);
+  const [finished, setFinished] = React.useState(false);
+  const [disabled, setDisabled] = React.useState(false);
+
+  React.useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  },[finished]);
 
   function handleButtonClick() {
     setShowComponent(!showComponent);
@@ -22,7 +28,7 @@ function App() {
       button: buttonId,
       id: id,
       myAnswer: answer,
-      isSelected: true
+      status: "selected"
     }
 
     if(index === -1){
@@ -38,7 +44,25 @@ function App() {
   console.log(answers)
 
   function checkAnswers(){
-    
+    if(data.length === answers.length){
+      for(let i=0; i<answers.length; i++) {
+        for(let j=0; j<data.length; j++) {
+          if(answers[i].id === data[j].id) {
+            if(answers[i].myAnswer !== data[j].correctAnswer){
+              answers[i].status = "wrong"
+            }
+            else if(answers[i].myAnswer === data[j].correctAnswer){
+              answers[i].status = "correct"
+            }
+            setFinished(true);
+            setDisabled(true);
+          }
+        }
+      }
+    }
+    else {
+      alert("Please finish the quiz")
+    }
   }
 
 
@@ -47,6 +71,7 @@ function App() {
       <div className='App'>
         {showComponent && <Home handleButtonClick={handleButtonClick}/>}
         {!showComponent && <Quiz
+          disabled={disabled}
           questionData={data}
           answersData={answers}
           setId={nanoid}
