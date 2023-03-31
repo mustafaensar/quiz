@@ -4,6 +4,7 @@ import React from 'react';
 import data from './data';
 import Home from './components/Home';
 import { nanoid } from 'nanoid';
+import Result from './components/Result';
 
 function App() {
 
@@ -41,8 +42,6 @@ function App() {
 
   }
 
-  console.log(answers)
-
   function checkAnswers(){
     if(data.length === answers.length){
       for(let i=0; i<answers.length; i++) {
@@ -65,11 +64,11 @@ function App() {
     }
   }
 
-
   return (
     <>
       <div className='App'>
         {showComponent && <Home handleButtonClick={handleButtonClick}/>}
+        {!showComponent && (finished === true) ? <Result results={answers}/> : ""}
         {!showComponent && <Quiz
           disabled={disabled}
           questionData={data}
