@@ -20,7 +20,7 @@ export default function Options(props) {
                 props.answers?.some(item => (item.myAnswer === elem && item.status === "wrong")) ?
                 "red"
                 :
-                props.answers?.some(item => (item.myAnswer === elem && item.status === "correct")) ?
+                props.answers?.some(item => ((props.correctAnswer === elem || item.myAnswer === elem) && item.status === "correct")) ?
                 "green"
                 :
                 ""

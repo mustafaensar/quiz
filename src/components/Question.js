@@ -13,6 +13,7 @@ export default function Question(props) {
                   <Options
                   disabled={props.disabled}
                   answers={props.answers} 
+                  correctAnswer={quiz.correctAnswer}
                   options={quiz.options} 
                   quizId={quiz.id} 
                   setId={props.setId}
